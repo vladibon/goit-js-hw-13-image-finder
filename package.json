@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --mode=development",
+    "dev": "webpack --mode=development",
     "build": "webpack --mode=production"
   },
   "repository": {
@@ -20,7 +21,9 @@
   "homepage": "https://github.com/vladibon/goit-js-hw-13-image-finder#readme",
   "devDependencies": {
     "@babel/core": "^7.15.5",
+    "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.6",
+    "axios": "^0.21.4",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.3.0",
@@ -28,11 +31,14 @@
     "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.3.0",
-    "notiflix": "^3.0.2",
+    "modern-normalize": "^1.1.0",
     "sass": "^1.41.1",
     "sass-loader": "^12.1.0",
     "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.2.1"
+  },
+  "dependencies": {
+    "notiflix": "^3.0.2"
   }
 }
