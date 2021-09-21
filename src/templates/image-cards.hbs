@@ -1,0 +1,35 @@
+{{#each this}}
+  <div class='photo-card'>
+    <div class='photo-card__thumb'>
+      <img
+        class='photo-card__img'
+        src='{{webformatURL}}'
+        data-src='{{fullHDURL}}'
+        alt='{{tags}}'
+        loading='lazy'
+      />
+    </div>
+
+    <div class='info'>
+      <p class='info__item'>
+        <b class='info__title'>Likes</b>
+        {{likes}}
+      </p>
+
+      <p class='info__item'>
+        <b class='info__title'>Views</b>
+        {{views}}
+      </p>
+
+      <p class='info__item'>
+        <b class='info__title'>Comments</b>
+        {{comments}}
+      </p>
+
+      <p class='info__item'>
+        <b class='info__title'>Downloads</b>
+        {{downloads}}
+      </p>
+    </div>
+  </div>
+{{/each}}
