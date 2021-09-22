@@ -5,16 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gallery</title>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <header class="page-header">
       <div class="container page-header__container">
         <!-- Logo -->
-        <svg width="160" height="30">
+        <svg class="logo" width="160" height="30">
           <use href="./images/sprite.svg#logo"></use>
         </svg>
 
@@ -29,9 +25,16 @@
           />
 
           <button class="search-form__btn" type="submit">
-            <span class="material-icons">search</span>
+            <svg width="20" height="20">
+              <use href="./images/sprite.svg#search"></use>
+            </svg>
           </button>
         </form>
+
+        <!-- Switch -->
+        <svg class="logo" width="160" height="30">
+          <use href="./images/sprite.svg#logo"></use>
+        </svg>
       </div>
     </header>
 
@@ -41,7 +44,9 @@
         <div class="gallery js-gallery"></div>
 
         <!-- Load more Button -->
-        <button type="button" class="load-more__btn js-load-more__btn">Load more</button>
+        <button class="load-more__btn js-load-more__btn is-hidden" type="button">
+          <span class="label loading">Load more</span>
+        </button>
       </div>
     </main>
   </body>
