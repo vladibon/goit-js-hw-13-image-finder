@@ -10,12 +10,25 @@ Notiflix.Notify.init({
   fontSize: '14px',
   cssAnimationDuration: 450,
   cssAnimationStyle: 'from-top', // 'fade' - 'zoom' - 'from-right' - 'from-top' - 'from-bottom' - 'from-left'
-  useIcon: false,
+  useIcon: true,
+
+  success: {
+    background: '#bfe5df',
+    textColor: '#333',
+  },
+
+  failure: {
+    background: '#e5bfc5',
+    textColor: '#333',
+  },
 });
 
 Notiflix.Loading.init({
   backgroundColor: 'rgba(0,0,0,0.2)',
   cssAnimationDuration: 450,
   svgSize: '80px',
-  svgColor: '#188ce8',
+  svgColor: '#7d8e70',
+  messageFontSize: '16px',
+  messageMaxLength: 34,
+  messageColor: '#7d8e70',
 });
