@@ -2,13 +2,11 @@ import { Notify, Loading } from 'notiflix';
 import imagesTemplate from '../templates/image-cards.hbs';
 import refs from './refs';
 import PixabayApiService from './apiService';
-import LoadMoreBtn from './components/load-more-btn';
 
 const pixabay = new PixabayApiService();
-const loadMoreBtn = new LoadMoreBtn('.js-load-more__btn');
 
 refs.searchForm.onsubmit = onSearch;
-loadMoreBtn.refs.button.onclick = addImages;
+refs.loadMoreBtn.onclick = loadImages;
 
 function onSearch(e) {
   e.preventDefault();
@@ -22,12 +20,12 @@ function onSearch(e) {
 
   pixabay.resetPage();
   clearGalleryContainer();
-  addImages();
+  loadImages();
 }
 
-async function addImages() {
-  Loading.circle();
-  loadMoreBtn.hide();
+async function loadImages() {
+  Loading.circle('Loading...');
+  refs.loadMoreBtn.classList.add('is-hidden');
 
   try {
     const { hits, totalHits } = await pixabay.fetchImages();
@@ -35,24 +33,20 @@ async function addImages() {
     if (!totalHits)
       throw 'Sorry, there are no images matching your search query. Please try again.';
 
-    appendImagesMarkup(hits);
-    loadMoreBtn.show();
+    if (!hits.length) throw "We're sorry, but you've reached the end of search results.";
 
-    if (pixabay.page === 2) {
+    appendImagesMarkup(hits);
+    refs.loadMoreBtn.classList.remove('is-hidden');
+
+    if (pixabay.page === 1) {
       Notify.success(`Hooray! We found ${totalHits} images.`);
     } else {
-      const { height } = refs.galleryContainer.firstElementChild.getBoundingClientRect();
-
-      window.scrollBy({
-        top: height * 2,
-        behavior: 'smooth',
-      });
-
-      if (pixabay.perPage * pixabay.page >= totalHits)
-        Notify.info("We're sorry, but you've reached the end of search results.");
+      scrollToNextImages();
     }
-  } catch (error) {
-    Notify.failure(`${error}`);
+
+    pixabay.incrementPage();
+  } catch (message) {
+    Notify.failure(message);
   } finally {
     Loading.remove(100);
   }
@@ -64,4 +58,13 @@ function appendImagesMarkup(images) {
 
 function clearGalleryContainer() {
   refs.galleryContainer.innerHTML = '';
+}
+
+function scrollToNextImages() {
+  const { height } = refs.galleryContainer.firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: height * 2,
+    behavior: 'smooth',
+  });
 }

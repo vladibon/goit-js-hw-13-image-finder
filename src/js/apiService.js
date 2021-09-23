@@ -12,11 +12,9 @@ export default class PixabayApiService {
   }
 
   async fetchImages() {
-    const url = `${BASE_URL}/?key=${API_KEY}&q=${this._searchQuery}&${params}&per_page=${this.perPage}&page=${this.page}`;
-    const { data } = await axios.get(url);
-
-    this.incrementPage();
-
+    const { data } = await axios.get(
+      `${BASE_URL}/?key=${API_KEY}&q=${this._searchQuery}&${params}&per_page=${this.perPage}&page=${this.page}`,
+    );
     return data;
   }
 
