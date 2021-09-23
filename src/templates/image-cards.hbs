@@ -1,5 +1,5 @@
 {{#each this}}
-  <div class='photo-card'>
+  <a class='photo-card' href='{{largeImageURL}}'>
     <div class='photo-card__thumb'>
       <img
         class='photo-card__img'
@@ -31,5 +31,5 @@
         {{downloads}}
       </p>
     </div>
-  </div>
+  </a>
 {{/each}}

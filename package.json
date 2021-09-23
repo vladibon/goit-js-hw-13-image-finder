@@ -39,6 +39,7 @@
     "webpack-dev-server": "^4.2.1"
   },
   "dependencies": {
-    "notiflix": "^3.0.2"
+    "notiflix": "^3.0.2",
+    "simplelightbox": "^2.8.1"
   }
 }

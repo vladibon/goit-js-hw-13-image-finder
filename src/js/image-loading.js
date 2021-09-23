@@ -1,7 +1,10 @@
 import { Notify, Loading } from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
 import imagesTemplate from '../templates/image-cards.hbs';
 import refs from './refs';
 import PixabayApiService from './apiService';
+
+const lightbox = new SimpleLightbox('.photo-card');
 
 const pixabay = new PixabayApiService();
 
@@ -36,6 +39,7 @@ async function loadImages() {
     if (!hits.length) throw "We're sorry, but you've reached the end of search results.";
 
     appendImagesMarkup(hits);
+    lightbox.refresh();
     refs.loadMoreBtn.classList.remove('is-hidden');
 
     if (pixabay.page === 1) {
