@@ -31,10 +31,21 @@
           </button>
         </form>
 
-        <!-- Switch -->
-        <svg class="logo" width="160" height="30">
-          <use href="./images/sprite.svg#logo"></use>
-        </svg>
+        <!-- Theme switch -->
+        <div class="theme-switch">
+          <div class="theme-switch__control">
+            <input
+              class="theme-switch__toggle"
+              type="checkbox"
+              name="theme"
+              id="themeSwitch"
+              aria-label="Переключить между тёмной и светлой темой"
+            />
+            <label aria-hidden="true" class="theme-switch__track" for="themeSwitch">
+            </label>
+            <div aria-hidden="true" class="theme-switch__marker"></div>
+          </div>
+        </div>
       </div>
     </header>
 
