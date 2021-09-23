@@ -5,7 +5,6 @@
   width: 100%;
   padding-top: 12px;
   padding-bottom: 12px;
-
   background-color: $accent-color;
   box-shadow: $card-shadow;
 }
@@ -13,36 +12,4 @@
 .page-header__container {
   display: flex;
   justify-content: space-between;
-}
-
-// Search Form
-.search-form {
-  position: relative;
-  width: 280px;
-}
-
-.search-form__input {
-  width: 100%;
-  height: 30px;
-  padding-left: 10px;
-  padding-right: 50px;
-  font-size: 14px;
-  border-style: none;
-  border-radius: 4px;
-}
-
-.search-form__btn {
-  position: absolute;
-  top: 1px;
-  right: 1px;
-  width: 40px;
-  height: 28px;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-style: none;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  cursor: pointer;
 }

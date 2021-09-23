@@ -1,7 +1,8 @@
-// THEME SWITCH
+// Theme switch
 .theme-switch {
   display: flex;
   align-items: center;
+  margin-left: 96px;
 }
 
 .theme-switch__control {
@@ -64,5 +65,5 @@
 
 .theme-switch__toggle:focus + .theme-switch__track,
 .theme-switch__toggle:active + .theme-switch__track {
-  box-shadow: 0 0 0 3px #2196f3;
+  box-shadow: 0 0 0 2px #2196f3;
 }
