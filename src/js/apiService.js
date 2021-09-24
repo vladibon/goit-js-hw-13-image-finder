@@ -7,7 +7,7 @@ const params = 'image_type=photo&orientation=horizontal&safesearch=true';
 export default class PixabayApiService {
   constructor() {
     this._searchQuery = '';
-    this.perPage = 12;
+    this.perPage = 16;
     this.page = 1;
   }
 
