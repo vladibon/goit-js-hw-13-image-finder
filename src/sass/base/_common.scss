@@ -15,18 +15,18 @@ body {
   font-size: 13px;
 
   &.light-theme {
-    background-color: #fff;
-    color: #333;
+    background-color: $white-bg-color;
+    color: $dark-text-color;
   }
 
   &.dark-theme {
-    background-color: #333;
-    color: #fff;
+    background-color: $dark-bg-color;
+    color: $white-text-color;
 
     & .photo-card,
     .load-more__btn {
-      color: #eee;
-      background-color: #555;
+      color: $gray-text-color;
+      background-color: $gray-bg-color;
     }
   }
 }
