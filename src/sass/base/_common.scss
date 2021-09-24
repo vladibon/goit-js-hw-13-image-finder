@@ -32,6 +32,10 @@ body {
 }
 
 main {
-  padding-top: 70px;
+  padding-top: 104px;
   padding-bottom: 20px;
+
+  @include respond-above($tablet) {
+    padding-top: 70px;
+  }
 }

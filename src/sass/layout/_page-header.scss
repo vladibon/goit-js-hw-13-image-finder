@@ -10,6 +10,28 @@
 }
 
 .page-header__container {
+  @include respond-above($tablet) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.page-header__control {
   display: flex;
   justify-content: space-between;
+
+  @include respond-above($tablet) {
+    width: 502px;
+  }
+
+  @include respond-above($desktop) {
+    width: 718px;
+  }
+}
+
+.logo {
+  @include respond-below($tablet) {
+    display: block;
+    margin-bottom: 6px;
+  }
 }

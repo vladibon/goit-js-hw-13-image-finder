@@ -1,7 +1,13 @@
 // Search Form
 .search-form {
   position: relative;
-  width: 280px;
+  display: block;
+  width: 100%;
+  max-width: 225px;
+
+  @include respond-above($tablet) {
+    min-width: 266px;
+  }
 }
 
 .search-form__input {
