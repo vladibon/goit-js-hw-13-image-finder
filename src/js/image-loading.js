@@ -1,11 +1,11 @@
 import { Notify, Loading } from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
-import imagesTemplate from '../templates/image-cards.hbs';
-import refs from './refs';
+import simpleLightboxOptions from './components/lightbox-options';
 import PixabayApiService from './apiService';
+import refs from './refs';
+import imagesTemplate from '../templates/image-cards.hbs';
 
-const lightbox = new SimpleLightbox('.photo-card');
-
+const lightbox = new SimpleLightbox('.photo-card', simpleLightboxOptions);
 const pixabay = new PixabayApiService();
 
 refs.searchForm.onsubmit = onSearch;
@@ -28,7 +28,7 @@ function onSearch(e) {
 
 async function loadImages() {
   Loading.circle('Loading...');
-  refs.loadMoreBtn.classList.add('is-hidden');
+  hideLoadMoreBtn();
 
   try {
     const { hits, totalHits } = await pixabay.fetchImages();
@@ -40,12 +40,12 @@ async function loadImages() {
 
     appendImagesMarkup(hits);
     lightbox.refresh();
-    refs.loadMoreBtn.classList.remove('is-hidden');
+    showLoadMoreBtn();
 
     if (pixabay.page === 1) {
       Notify.success(`Hooray! We found ${totalHits} images.`);
     } else {
-      scrollToNextImages();
+      scrollToLoadedImages();
     }
 
     pixabay.incrementPage();
@@ -64,11 +64,19 @@ function clearGalleryContainer() {
   refs.galleryContainer.innerHTML = '';
 }
 
-function scrollToNextImages() {
+function hideLoadMoreBtn() {
+  refs.loadMoreBtn.classList.add('is-hidden');
+}
+
+function showLoadMoreBtn() {
+  refs.loadMoreBtn.classList.remove('is-hidden');
+}
+
+function scrollToLoadedImages() {
   const { height } = refs.galleryContainer.firstElementChild.getBoundingClientRect();
 
   window.scrollBy({
-    top: height * 2,
+    top: height * 2.42,
     behavior: 'smooth',
   });
 }
