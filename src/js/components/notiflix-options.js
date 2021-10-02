@@ -11,6 +11,7 @@ Notiflix.Notify.init({
   cssAnimationDuration: 450,
   cssAnimationStyle: 'from-top', // 'fade' - 'zoom' - 'from-right' - 'from-top' - 'from-bottom' - 'from-left'
   useIcon: true,
+  showOnlyTheLastOne: true,
   clickToClose: true,
 
   success: {

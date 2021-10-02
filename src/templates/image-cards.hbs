@@ -1,10 +1,10 @@
 {{#each this}}
-  <a class='photo-card' href='{{largeImageURL}}'>
+  <a class='photo-card' href='{{fullHDURL}}'>
     <div class='photo-card__thumb'>
       <img
         class='photo-card__img'
         src='{{webformatURL}}'
-        data-src='{{fullHDURL}}'
+        data-src='{{largeImageURL}}'
         alt='{{tags}}'
         loading='lazy'
       />

@@ -1,15 +1,24 @@
+import debounce from 'lodash.debounce';
 import { Notify, Loading } from 'notiflix';
-import SimpleLightbox from 'simplelightbox';
-import simpleLightboxOptions from './components/lightbox-options';
-import PixabayApiService from './apiService';
+import InfiniteScroll from 'infinite-scroll';
+
 import refs from './refs';
+import pixabay from './apiService';
 import imagesTemplate from '../templates/image-cards.hbs';
 
-const lightbox = new SimpleLightbox('.photo-card', simpleLightboxOptions);
-const pixabay = new PixabayApiService();
+const infScroll = new InfiniteScroll(refs.galleryContainer, {
+  path: pixabay.getURL.bind(pixabay),
+  responseBody: 'json',
+  history: false,
+  scrollThreshold: 200,
+});
 
-refs.searchForm.onsubmit = onSearch;
-refs.loadMoreBtn.onclick = loadImages;
+refs.searchForm.addEventListener('submit', onSearch);
+// refs.searchForm.onsubmit = onSearch;
+
+infScroll.on('load', debounce(loadImages, 200));
+
+// infScroll.loadNextPage();
 
 function onSearch(e) {
   e.preventDefault();
@@ -23,31 +32,23 @@ function onSearch(e) {
 
   pixabay.resetPage();
   clearGalleryContainer();
-  loadImages();
+  infScroll.loadNextPage();
 }
 
-async function loadImages() {
+async function loadImages({ hits, total }) {
   Loading.circle('Loading...');
-  hideLoadMoreBtn();
 
   try {
-    const { hits, totalHits } = await pixabay.fetchImages();
-
-    if (!totalHits)
+    if (!total)
       throw 'Sorry, there are no images matching your search query. Please try again.';
 
     if (!hits.length) throw "We're sorry, but you've reached the end of search results.";
 
-    appendImagesMarkup(hits);
-    lightbox.refresh();
-    showLoadMoreBtn();
-
-    if (pixabay.page === 1) {
-      Notify.success(`Hooray! We found ${totalHits} images.`);
-    } else {
-      scrollToLoadedImages();
+    if (pixabay.params.page === 1) {
+      Notify.success(`Hooray! We found ${total} images.`);
     }
 
+    appendImagesMarkup(hits);
     pixabay.incrementPage();
   } catch (message) {
     Notify.failure(message);
@@ -62,21 +63,4 @@ function appendImagesMarkup(images) {
 
 function clearGalleryContainer() {
   refs.galleryContainer.innerHTML = '';
-}
-
-function hideLoadMoreBtn() {
-  refs.loadMoreBtn.classList.add('is-hidden');
-}
-
-function showLoadMoreBtn() {
-  refs.loadMoreBtn.classList.remove('is-hidden');
-}
-
-function scrollToLoadedImages() {
-  const { height } = refs.galleryContainer.firstElementChild.getBoundingClientRect();
-
-  window.scrollBy({
-    top: height * 2.42,
-    behavior: 'smooth',
-  });
 }
