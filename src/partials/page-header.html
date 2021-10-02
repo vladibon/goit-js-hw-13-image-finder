@@ -1,0 +1,50 @@
+<header class="page-header">
+  <div class="container page-header__container">
+    <!-- Logo -->
+    <a
+      class="logo"
+      href="https://pixabay.com/"
+      target="_blank"
+      rel="nofollow noreferrer"
+      aria-label="pixabay"
+    >
+      <svg width="160" height="30">
+        <use href="../images/sprite.svg#logo"></use>
+      </svg>
+    </a>
+
+    <div class="page-header__control">
+      <!-- Search-form -->
+      <form class="search-form js-search-form" id="search-form">
+        <input
+          class="search-form__input"
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+
+        <button class="search-form__btn" type="submit">
+          <svg width="20" height="20">
+            <use href="../images/sprite.svg#search"></use>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Theme switch -->
+      <div class="theme-switch">
+        <div class="theme-switch__control">
+          <input
+            class="theme-switch__toggle"
+            id="themeSwitch"
+            type="checkbox"
+            name="theme"
+            aria-label="Переключить между тёмной и светлой темой"
+          />
+          <label class="theme-switch__track" for="themeSwitch" aria-hidden="true"></label>
+          <div class="theme-switch__marker" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
