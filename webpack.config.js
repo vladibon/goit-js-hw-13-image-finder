@@ -21,15 +21,11 @@ module.exports = {
         loader: 'handlebars-loader',
       },
       {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      },
-      {
-        test: /\.scss$/i,
+        test: /\.s?css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.svg$/i,
+        test: /\.(png|jpg|gif|svg)$/i,
         type: 'asset/resource',
         generator: {
           filename: 'images/[name][ext]',
@@ -43,6 +39,7 @@ module.exports = {
     new CleanWebpackPlugin(),
   ],
   devServer: {
+    // open: true,
     compress: true,
     port: 7777,
   },
