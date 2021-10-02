@@ -3,7 +3,7 @@ import { Notify, Loading } from 'notiflix';
 import InfiniteScroll from 'infinite-scroll';
 
 import refs from './refs';
-import pixabay from './apiService';
+import pixabay from './components/pixabay-api';
 import imagesTemplate from '../templates/image-cards.hbs';
 
 const infScroll = new InfiniteScroll(refs.galleryContainer, {
