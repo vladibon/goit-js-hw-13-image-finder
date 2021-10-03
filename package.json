@@ -40,6 +40,6 @@
   },
   "dependencies": {
     "notiflix": "^3.0.2",
-    "simplelightbox": "^2.8.1"
+    "simplelightbox": "^2.9.0"
   }
 }
