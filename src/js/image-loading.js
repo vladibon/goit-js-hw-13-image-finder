@@ -14,10 +14,7 @@ const infScroll = new InfiniteScroll(refs.galleryContainer, {
 });
 
 refs.searchForm.addEventListener('submit', onSearch);
-// refs.searchForm.onsubmit = onSearch;
-
 infScroll.on('load', debounce(loadImages, 200));
-
 infScroll.loadNextPage();
 
 function onSearch(e) {
@@ -35,25 +32,28 @@ function onSearch(e) {
   infScroll.loadNextPage();
 }
 
-async function loadImages({ hits, total }) {
+async function loadImages(data) {
   Loading.circle('Loading...');
 
   try {
-    if (!total)
-      throw 'Sorry, there are no images matching your search query. Please try again.';
-
-    if (!hits.length) throw "We're sorry, but you've reached the end of search results.";
-
-    if (pixabay.params.page === 1) {
-      Notify.success(`Hooray! We found ${total} images.`);
-    }
-
-    appendImagesMarkup(hits);
+    checkErrors(data);
+    appendImagesMarkup(data.hits);
     pixabay.incrementPage();
   } catch (message) {
     Notify.failure(message);
   } finally {
     Loading.remove(100);
+  }
+}
+
+function checkErrors({ hits, totalHits }) {
+  if (!totalHits)
+    throw 'Sorry, there are no images matching your search query. Please try again.';
+
+  if (!hits.length) throw "We're sorry, but you've reached the end of search results.";
+
+  if (pixabay.params.page === 1) {
+    Notify.success(`Hooray! We found ${totalHits} images.`);
   }
 }
 
