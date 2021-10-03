@@ -3,7 +3,7 @@ import { Notify, Loading } from 'notiflix';
 import InfiniteScroll from 'infinite-scroll';
 
 import refs from './refs';
-import pixabay from './components/pixabay-api';
+import pixabay from './api/pixabay-api';
 import imagesTemplate from '../templates/image-cards.hbs';
 
 const infScroll = new InfiniteScroll(refs.galleryContainer, {
@@ -18,7 +18,7 @@ refs.searchForm.addEventListener('submit', onSearch);
 
 infScroll.on('load', debounce(loadImages, 200));
 
-// infScroll.loadNextPage();
+infScroll.loadNextPage();
 
 function onSearch(e) {
   e.preventDefault();
