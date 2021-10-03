@@ -8,11 +8,13 @@ refs.galleryContainer.addEventListener('click', openLightbox);
 function openLightbox(e) {
   e.preventDefault();
 
-  if (!e.target.dataset.src) return;
+  if (!e.target.classList.contains('photo-card')) return;
+
+  const img = e.target.firstElementChild.firstElementChild;
 
   const options = {
-    src: e.target.dataset.src,
-    alt: e.target.alt,
+    src: img.dataset.src,
+    alt: img.alt,
   };
 
   const lightbox = basicLightbox.create(imageTemplate(options));

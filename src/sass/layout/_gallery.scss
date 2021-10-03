@@ -28,6 +28,7 @@
 }
 
 .photo-card__thumb {
+  pointer-events: none;
   @include respond-below($tablet) {
     height: 300px;
   }
@@ -45,6 +46,7 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
+  pointer-events: none;
 
   @include respond-below($desktop) {
     justify-content: space-around;
