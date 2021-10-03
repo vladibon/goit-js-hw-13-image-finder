@@ -45,12 +45,13 @@ async function loadImages() {
     if (pixabay.page === 1) {
       Notify.success(`Hooray! We found ${totalHits} images.`);
     } else {
-      scrollToLoadedImages();
+      scrollToLoadedImages(hits);
     }
 
     pixabay.incrementPage();
   } catch (message) {
     Notify.failure(message);
+    console.log(message);
   } finally {
     Loading.remove(100);
   }
@@ -72,11 +73,19 @@ function showLoadMoreBtn() {
   refs.loadMoreBtn.classList.remove('is-hidden');
 }
 
-function scrollToLoadedImages() {
+function scrollToLoadedImages(hits) {
   const { height } = refs.galleryContainer.firstElementChild.getBoundingClientRect();
 
   window.scrollBy({
     top: height * 2.42,
     behavior: 'smooth',
   });
+
+  // const image = document.getElementById(hits[0].id);
+  // image.onload = () => {
+  //   image.scrollIntoView({
+  //     behavior: 'smooth',
+  //     block: 'end',
+  //   });
+  // };
 }
