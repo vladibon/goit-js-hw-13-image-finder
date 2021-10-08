@@ -1,7 +1,7 @@
 import { Notify, Loading } from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import simpleLightboxOptions from './components/lightbox-options';
-import PixabayApiService from './apiService';
+import PixabayApiService from './api/apiService';
 import refs from './refs';
 import imagesTemplate from '../templates/image-cards.hbs';
 
